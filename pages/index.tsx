@@ -8,7 +8,7 @@ dayjs.extend(timezone);
 dayjs.extend(utc);
 dayjs.tz.setDefault('Asia/Tokyo');
 
-const revalidate = 180;
+const revalidate = 300;
 const formatStyle = 'MM/DD HH:mm:ss';
 
 export async function getStaticProps() {
@@ -34,6 +34,7 @@ const Home: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
     await fetch('api/revalidate').catch((error) => {
       console.error('error', error);
     });
+    window.location.reload();
   };
 
   return (
@@ -42,10 +43,10 @@ const Home: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
         作成時刻：{createdAt}
       </div>
       <div>
-        作成時刻：{nextCreatedAt}
+        次の予定作成時刻：{nextCreatedAt}
       </div>
       <button color="gradient" onClick={ondemandRevalidate}>
-        ページ再生成
+        強制ページ再生成
       </button>
     </div>
   )
