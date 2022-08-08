@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetStaticPaths, NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
@@ -16,6 +16,12 @@ const formatStyle = 'MM/DD HH:mm:ss';
 // https://alistair.blog/zero-kb-nextjs-blog
 export const config = { unstable_runtimeJS: false }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: ['/ssg'],
+    fallback: 'blocking',
+  }
+}
 
 export async function getStaticProps() {
   const currentTime = dayjs().tz();
