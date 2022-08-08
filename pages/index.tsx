@@ -11,6 +11,9 @@ dayjs.tz.setDefault('Asia/Tokyo');
 const revalidate = 300;
 const formatStyle = 'MM/DD HH:mm:ss';
 
+export const config = { unstable_runtimeJS: false }
+
+
 export async function getStaticProps() {
   const currentTime = dayjs().tz();
   const createdAt = currentTime.format(formatStyle);
