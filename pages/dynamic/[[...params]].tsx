@@ -48,8 +48,9 @@ const Page: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
         <script dangerouslySetInnerHTML={{__html: `
 window.addEventListener('DOMContentLoaded', function() {
   var btn = document.querySelector('#btn')
+  var path = window.location.pathname
   btn.addEventListener('click', function() {
-    fetch('api/revalidate').then(() => {
+    fetch(\`api/revalidate?path=\${path}\`).then(() => {
       window.location.reload();
     }).catch((error) => {
       console.error('error', error);
