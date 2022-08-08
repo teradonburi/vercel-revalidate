@@ -12,6 +12,8 @@ dayjs.tz.setDefault('Asia/Tokyo');
 const revalidate = 300;
 const formatStyle = 'MM/DD HH:mm:ss';
 
+// The 0kb Next.js blog
+// https://alistair.blog/zero-kb-nextjs-blog
 export const config = { unstable_runtimeJS: false }
 
 
@@ -41,15 +43,16 @@ const Home: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
     <>
       <Head>
         <script dangerouslySetInnerHTML={{__html: `
-            var btn = document.querySelector('#btn')
-            btn.addEventListener('click', function() {
-              fetch('api/revalidate').then(() => {
-                window.location.reload();
-              }).catch((error) => {
-                console.error('error', error);
-              });
-            })
-        `}}>
+window.addEventListener('DOMContentLoaded', function() {
+  var btn = document.querySelector('#btn')
+  btn.addEventListener('click', function() {
+    fetch('api/revalidate').then(() => {
+      window.location.reload();
+    }).catch((error) => {
+      console.error('error', error);
+    });
+  })
+});`}}>
         </script>
       </Head>
       <div className={styles.container}>
