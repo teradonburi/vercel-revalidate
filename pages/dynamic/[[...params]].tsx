@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function() {
   var btn = document.querySelector('#btn')
   var path = window.location.pathname
   btn.addEventListener('click', function() {
-    fetch(\`${process.env.VERCEL_URL}/api/revalidate?path=\${path}\`).then(() => {
+    fetch(\`https://${process.env.VERCEL_URL}/api/revalidate?path=\${path}\`).then(() => {
       window.location.reload();
     }).catch((error) => {
       console.error('error', error);
