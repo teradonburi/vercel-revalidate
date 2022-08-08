@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
+import Head from 'next/head';
 
 dayjs.extend(timezone);
 dayjs.extend(utc);
@@ -34,24 +35,35 @@ const Home: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
   nextCreatedAt,
 }) => {
   const ondemandRevalidate = async () => {
-    await fetch('api/revalidate').catch((error) => {
-      console.error('error', error);
-    });
-    window.location.reload();
   };
 
   return (
-    <div className={styles.container}>
+    <>
+      <Head>
+        <script dangerouslySetInnerHTML={{__html: `
+            var btn = document.querySelector('#btn')
+            btn.addEventListener('click', function() {
+              fetch('api/revalidate').then(() => {
+                window.location.reload();
+              }).catch((error) => {
+                console.error('error', error);
+              });
+            })
+        `}}>
+        </script>
+      </Head>
+      <div className={styles.container}>
       <div>
         作成時刻：{createdAt}
       </div>
       <div>
         次の予定作成時刻：{nextCreatedAt}
       </div>
-      <button color="gradient" onClick={ondemandRevalidate}>
+      <button color="gradient" id='btn'>
         強制ページ再生成
       </button>
     </div>
+    </>
   )
 }
 
