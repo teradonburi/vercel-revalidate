@@ -43,7 +43,7 @@ const Page: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
 window.addEventListener('DOMContentLoaded', function() {
   var btn = document.querySelector('#btn')
   btn.addEventListener('click', function() {
-    fetch('api/revalidate?path=/').then(() => {
+    fetch('${process.env.VERCEL_URL}/api/revalidate?path=/').then(() => {
       window.location.reload();
     }).catch((error) => {
       console.error('error', error);
