@@ -48,9 +48,10 @@ const Page: NextPage<{ createdAt: string; nextCreatedAt: string }> = ({
         <script dangerouslySetInnerHTML={{__html: `
 window.addEventListener('DOMContentLoaded', function() {
   var btn = document.querySelector('#btn')
+  var hostname = window.location.hostname
   var path = window.location.pathname
   btn.addEventListener('click', function() {
-    fetch(\`https://${process.env.VERCEL_URL}/api/revalidate?path=\${path}\`).then(() => {
+    fetch(\`https://\${hostname}/api/revalidate?path=\${path}\`).then(() => {
       window.location.reload();
     }).catch((error) => {
       console.error('error', error);
