@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
 import dayjs from 'dayjs';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
@@ -53,17 +52,17 @@ window.addEventListener('DOMContentLoaded', function() {
 });`}}>
         </script>
       </Head>
-      <div className={styles.container}>
       <div>
-        作成時刻：{createdAt}
+        <div>
+          作成時刻：{createdAt}
+        </div>
+        <div>
+          次の予定作成時刻：{nextCreatedAt}
+        </div>
+        <button color="gradient" id='btn'>
+          強制ページ再生成
+        </button>
       </div>
-      <div>
-        次の予定作成時刻：{nextCreatedAt}
-      </div>
-      <button color="gradient" id='btn'>
-        強制ページ再生成
-      </button>
-    </div>
     </>
   )
 }
