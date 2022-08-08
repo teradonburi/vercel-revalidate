@@ -17,7 +17,7 @@ export const config = { unstable_runtimeJS: false }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['dynamic/ssg'],
+    paths: ['/dynamic/ssg'],
     fallback: 'blocking',
   }
 }
